@@ -1,0 +1,38 @@
+const int sensor_pin = A1;  /* Soil moisture sensor O/P pin */
+const int gled_pin = 7;
+const int rled_pin = 8;
+
+
+void setup() {
+  Serial.begin(9600); /* Define baud rate for serial communication */
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+
+
+}
+
+void loop() {
+  float moisture_percentage;
+  int sensor_analog;
+  sensor_analog = analogRead(sensor_pin);
+  /*
+  moisture_percentage = ( 100 - ( (sensor_analog/1023.00) * 100 ) );
+  Serial.print("Moisture Percentage = ");
+  */
+  Serial.print(sensor_analog);
+  Serial.print("\n\n");
+  delay(1000);
+
+
+  if (sensor_analog < 450){
+      digitalWrite(7, HIGH);
+      digitalWrite(8, LOW);
+
+
+  } else{
+    digitalWrite(8, HIGH);
+    digitalWrite(7, LOW);
+
+
+  }
+}
